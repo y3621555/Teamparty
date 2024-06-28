@@ -52,3 +52,62 @@ Team playerTeam = teamAPI.getPlayerTeam(player);
 * boolean isLeader(Player player) - 判斷玩家是否是隊長。
 * int getTeamSize(Team team) - 獲取指定隊伍的成員數量。
 * void checkDisconnectedPlayers() - 檢查並處理斷線超過指定時間的玩家。
+
+## API使用範例
+```java
+
+public class MyPlugin extends JavaPlugin {
+
+    private TeamAPI teamAPI;
+
+    @Override
+    public void onEnable() {
+        // 獲取 TeamAPI 實例
+        teamAPI = Bukkit.getServicesManager().getRegistration(TeamAPI.class).getProvider();
+        
+        if (teamAPI == null) {
+            getLogger().severe("無法獲取 TeamAPI，請確保 Teamparty 插件已加載。");
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
+        // 示例：檢查某玩家是否在隊伍中
+        Player player = Bukkit.getPlayer("玩家名稱");
+        if (player != null) {
+            boolean isInTeam = teamAPI.isPlayerInTeam(player);
+            getLogger().info(player.getName() + " 是否在隊伍中: " + isInTeam);
+        }
+    }
+
+    @Override
+    public void onDisable() {
+        // 插件停用邏輯
+    }
+}
+
+```
+
+## 使用 TeamAPI 方法
+# 以下是一些常見的 TeamAPI 方法的使用示例：
+```java
+// 檢查玩家是否在隊伍中
+boolean isInTeam = teamAPI.isPlayerInTeam(player);
+
+// 獲取玩家的隊伍
+Team team = teamAPI.getPlayerTeam(player);
+
+// 創建新隊伍
+teamAPI.createTeam("隊伍名稱", player);
+
+// 添加玩家到隊伍
+teamAPI.addPlayerToTeam(player, team);
+
+// 從隊伍中移除玩家
+teamAPI.removePlayerFromTeam(player.getUniqueId());
+
+// 更改隊伍隊長
+teamAPI.changeTeamLeader(team, newLeader);
+
+// 獲取所有隊伍
+List<Team> allTeams = teamAPI.getAllTeams();
+```
