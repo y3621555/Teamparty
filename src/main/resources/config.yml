@@ -1,0 +1,8 @@
+# 定義每個隊伍最多可以有多少成員
+max_team_members: 5
+
+# 定義玩家斷線多長時間後會被視為離開隊伍 (以秒為單位)
+disconnect_time_limit: 1800
+
+# 定義隊伍邀請多久後過期 (以秒為單位)
+invite_expiry_time: 30

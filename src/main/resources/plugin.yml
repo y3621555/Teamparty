@@ -1,0 +1,13 @@
+name: Teamparty
+version: ${project.version}
+main: com.johnson.teamparty.Teamparty
+api-version: 1.20
+commands:
+  team:
+    description: 團隊管理指令
+    usage: /<command> <create|add|leave>
+    permission: teamparty.use
+permissions:
+  teamparty.use:
+    description: 使用 TeamParty 插件的權限
+    default: op
